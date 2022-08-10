@@ -8,7 +8,7 @@ for i in range(line):
             stack.append(k)
         elif k==')':
             if len(stack)>0:
-                stack.pop
+                stack.pop()
             else:
                 print("NO")
                 break
