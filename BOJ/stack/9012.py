@@ -7,7 +7,7 @@ for i in range(line):
         if k=='(':
             stack.append(k)
         elif k==')':
-            if len(stack)!=0:
+            if len(stack)>0:
                 stack.pop
             else:
                 print("NO")
