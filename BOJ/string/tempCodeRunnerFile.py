@@ -1,2 +1,1 @@
-
-print(len(line))
+a=[k for k in input()]
