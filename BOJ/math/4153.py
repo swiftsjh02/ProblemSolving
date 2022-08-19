@@ -1,7 +1,10 @@
 
 
 while True:
-    a=[k for k in input().split(" ")]
+    a=[int(k) for k in input().split(" ")]
+    a.sort()
+  
+    
     if int(a[0])==0:
         break
 
