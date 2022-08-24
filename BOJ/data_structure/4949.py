@@ -13,21 +13,32 @@ while True:
             
         if c==']' or c==')':
             if c==')':
-                if big.pop()=='(':
-                    pass
-                elif big.pop()=='[':
+                try:
+                    tmp=big.pop()
+                except:
                     print("no")
+                    big.append("no")
+                    break
+                if tmp=='(':
+                    pass
+                elif tmp=='[':
+                    print("no")
+                    big.append("no")
                     break
             elif c==']':
-                if big.pop()=='[':
-                    pass
-                elif big.pop()==')':
+                try:
+                    tmp=big.pop()
+                except:
                     print("no")
+                    big.append("no")
+                    break
+                if tmp=='[':
+                    pass
+                elif tmp=='(':
+                    print("no")
+                    big.append("no")
                     break
 
-        if c=='.':
-            break
-    print(big)
     if len(big)==0:
         print("yes")
-    continue
+        continue
