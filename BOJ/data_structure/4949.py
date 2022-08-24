@@ -2,7 +2,8 @@ while True:
     big=[]
     
     sentence=input()
-    print("\b\b\b",end="")
+ 
+    
     if sentence[0]=='.':
         break
     for c in sentence:
@@ -12,34 +13,22 @@ while True:
             big.append(c)
             
             
-        if c==']' or c==')':
-            if c==')':
-                try:
-                    tmp=big.pop()
-                except:
-                    print("no")
-                    big.append("no")
-                    break
-                if tmp=='(':
-                    pass
-                elif tmp=='[':
-                    print("no")
-                    big.append("no")
-                    break
-            elif c==']':
-                try:
-                    tmp=big.pop()
-                except:
-                    print("no")
-                    big.append("no")
-                    break
-                if tmp=='[':
-                    pass
-                elif tmp=='(':
-                    print("no")
-                    big.append("no")
-                    break
+        if c==']':
+          if len(big)!=0 and big[-1] =='[':
+            big.pop()
+          else:
+            big.append(']')
+        if c==')':
+          if len(big)!=0 and big[-1] =='(':
+            big.pop()
+          else:
+            big.append(')')
+            
 
     if len(big)==0:
         print("yes")
-        continue
+    else:
+        print("no")
+
+
+    continue
