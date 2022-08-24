@@ -21,7 +21,7 @@ while True:
                 print("no")
         if c=='.':
             break
-    print(big,small)
+
     if len(big)==0 and len(small)==0:
         print("yes")
     continue
