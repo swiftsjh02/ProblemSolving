@@ -2,6 +2,7 @@ while True:
     big=[]
     
     sentence=input()
+    print("\b\b\b",end="")
     if sentence[0]=='.':
         break
     for c in sentence:
