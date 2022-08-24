@@ -12,6 +12,7 @@ while True:
                 big.pop()
             except:
                 print("no")
+                break
         if c=='(':
             small.append(c)
         if c==')':
@@ -19,6 +20,7 @@ while True:
                 small.pop()
             except:
                 print("no")
+                break
         if c=='.':
             break
 
