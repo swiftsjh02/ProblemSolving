@@ -1,1 +1,2 @@
-(1,k[0]+1):
+p:
+                queue.append(tmp)
