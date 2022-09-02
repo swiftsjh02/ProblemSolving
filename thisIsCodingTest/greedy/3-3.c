@@ -9,17 +9,23 @@ int main(){
     scanf("%d %d",&n,&m);
     mins=malloc(sizeof(int)*m);
     for(int i=0; i<n; i++){
-        int tmp[m];
+        char tmp[m];
         char s1[1000];
         int min=1000000;
-        scanf(" %s\n",s1);
-        char *ptr = strtok(s1," ");
-        int count=0;
-        while (ptr!=NULL)
-        {
-            tmp[count]=atoi(ptr);
+        int z=0;
+        scanf("%s\n",s1);
+
+        char *ptr =strtok(s1," ");
+        while(ptr!=NULL){
+            tmp[z]=ptr;
             ptr=strtok(NULL," ");
-            count+=1;
+            z++;
+        }
+
+
+
+        for(int j=0; j<m; j++){
+            printf("%d\n",tmp[j]);
         }
 
 
@@ -29,14 +35,18 @@ int main(){
             }
         }
 
-        printf("%d\n",min);
+        
 
         mins[min_counter]=min;
-        min_counter+=1;
+        min_counter++;
         
 
     }
-       int answer=0;
+
+
+
+       
+    int answer=0;
     for(int i=0; i<n; i++){
         
         if(mins[i]>answer){
@@ -45,7 +55,7 @@ int main(){
 
     }
 
-    printf("%d\n",answer);
+    //printf("%d\n",answer);
 
 
 
