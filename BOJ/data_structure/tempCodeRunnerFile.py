@@ -1,2 +1,1 @@
-p:
-                queue.append(tmp)
+nt(answer)
