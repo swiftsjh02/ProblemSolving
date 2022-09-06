@@ -1,11 +1,17 @@
 
 import sys
-sys.setrecursionlimit(100000)
+sys.setrecursionlimit(1000000)
 
 def cut(start,half,target,max_len):
-    if half==start or half==max_len:
-        print(max(answer))
-        quit()
+    if half==max_len or half==start:
+        if len(answer)==0:
+            print("0")
+            exit()
+            
+        print(min(answer,key=answer.get))
+        exit()
+
+
     get=0
     for i in tree:
         if i-half<0:
@@ -14,10 +20,9 @@ def cut(start,half,target,max_len):
             get+=i-half
     if get==target:
         print(half)
-        quit()
-    if get>=target:
-        answer.append(half)
+        exit()
     if get>target:
+        answer[half]=get
         start=half
         half=(max_len+start)//2
         cut(start,half,target,max_len)
@@ -33,7 +38,7 @@ tree=list(map(int,sys.stdin.readline().split()))
 max_len=max(tree)
 start=0
 half=(start+max_len)//2
-answer=[]
+answer={}
 
 cut(start,half,m,max_len)
 
