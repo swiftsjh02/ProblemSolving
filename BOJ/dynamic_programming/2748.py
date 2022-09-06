@@ -1,7 +1,7 @@
 
 
 def fibo(n):
-    global fibolist
+    
     if n<=2:
         return 1
     if fibolist[n]!=0:
