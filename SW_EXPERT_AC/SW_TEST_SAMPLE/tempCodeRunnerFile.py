@@ -1,0 +1,1 @@
+ormat(test_case, arr[N//2]))
