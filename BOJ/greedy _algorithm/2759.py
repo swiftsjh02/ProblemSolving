@@ -1,13 +1,4 @@
 
-
-#make find max function
-def find_max(cake):
-    max=0
-    for i in range(len(cake)):
-        if cake[i]>max:
-            max=cake[i]
-    return max
-
 #make function that check list is sorted
 def is_sorted(cake):
     for i in range(len(cake)-1):
@@ -38,7 +29,7 @@ for i in range(int(input())):
     answer=[]
     while not is_sorted(cake):
 
-        (flip(cake,cake.index(find_max(cake))))
+        (flip(cake,cake.index(max(cake))))
         (flip(cake,len(cake)-1))
         lastidx-=1
         cake=cake[0:lastidx+1]
