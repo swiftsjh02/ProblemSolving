@@ -15,9 +15,6 @@ def flip(cake,index):
     cake[:index+1]=reversed(cake[:index+1])
     return cake
 
-
-
-
 for i in range(int(input())):
 
     #input number of element and list
