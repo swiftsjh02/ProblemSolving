@@ -66,37 +66,31 @@ int main(){
         int idx_answer=0;
        
         printf("%s",line);
-        printf("\n");
+        
         int numofcake=0;
+       
         char *ptr = strtok(line," ");
         while(ptr!=NULL){
             cake[numofcake]=atoi(ptr);
             ptr=strtok(NULL," ");
             numofcake++;
         }
-
+        
      
         while(is_sorted(cake,numofcake)!=1){
 
             if(find_max_index(cake,numofcake)!=0){
-                  flip(cake,numofcake,find_max_index(cake,numofcake));
                   answer[idx_answer]=find_max_index(cake,numofcake)+1;
+                  flip(cake,numofcake,find_max_index(cake,numofcake));
+                  
                   idx_answer++;
             }
 
-            printf("after 1st flip\n");
-            for(int i = 0; i < numofcake; i++){
-                printf("%d ",cake[i]);
-            }
-                printf("\n");
+           
             
             flip(cake,numofcake,numofcake-1);
 
-            printf("after 2st flip\n");
-            for(int i = 0; i < numofcake; i++){
-                printf("%d ",cake[i]);
-            }
-                printf("\n");
+            
 
             answer[idx_answer]=numofcake;
             idx_answer++;
@@ -107,15 +101,14 @@ int main(){
         }
 
 
-        printf("print answer\n");
         if(idx_answer==0){
             printf("0\n");
         }
         else{
-            printf("%d ",idx_answer);
             for(int i = 0; i < idx_answer; i++){
                 printf("%d ",answer[i]);
             }
+            printf("0");
             printf("\n");
     
             }
