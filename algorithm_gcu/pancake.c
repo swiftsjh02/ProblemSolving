@@ -67,6 +67,7 @@ int main(){
        
         printf("%s",line);
         
+        
         int numofcake=0;
        
         char *ptr = strtok(line," ");
@@ -75,7 +76,7 @@ int main(){
             ptr=strtok(NULL," ");
             numofcake++;
         }
-        
+        int len=numofcake;
      
         while(is_sorted(cake,numofcake)!=1){
 
@@ -102,9 +103,15 @@ int main(){
 
 
         if(idx_answer==0){
+            printf("\n");
             printf("0\n");
         }
         else{
+            printf("(");
+            for(int i=0; i<len; i++){
+                printf("%d ",cake[i]);
+            }
+            printf(")\n");
             for(int i = 0; i < idx_answer; i++){
                 printf("%d ",answer[i]);
             }
