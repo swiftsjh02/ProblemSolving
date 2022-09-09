@@ -81,7 +81,7 @@ int main(){
         while(is_sorted(cake,numofcake)!=1){
 
             if(find_max_index(cake,numofcake)!=0){
-                  answer[idx_answer]=abs(find_max_index(cake,numofcake)-len);
+                  answer[idx_answer]=find_max_index(cake,numofcake)+1;
                   flip(cake,numofcake,find_max_index(cake,numofcake));
                   
                   idx_answer++;
@@ -93,7 +93,7 @@ int main(){
 
             
 
-            answer[idx_answer]=len-numofcake+1;
+            answer[idx_answer]=numofcake;
             idx_answer++;
             numofcake--;
 
