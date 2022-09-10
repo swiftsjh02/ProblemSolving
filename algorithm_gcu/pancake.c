@@ -24,7 +24,7 @@ int is_sorted(int *arr, int n){
         if(arr[i] > arr[i+1]){
             return 0;
         }
-    }
+    
     return 1;
 }
 
@@ -81,6 +81,11 @@ int main(){
         }
 
         int len=numofcake;
+      
+
+        if(len==1){
+            break;
+        }
 
         for(int i=0; i<numofcake; i++){
             printf("%d ",cake[i]);
