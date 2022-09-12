@@ -1,40 +1,5 @@
 import sys
 
-def cut(start,half,target,max_len):
-
-    if target==1:
-        print(max(lan))
-        exit()
-
-    if half==max_len or half==start:
-
-        if len(answer)==0:
-            print(max(lan))
-            exit()
-        
-        print(max(answer))
-        exit()
-
-    get=0
-    for i in lan:
-        if i//half>0:
-            get+=i//half
-    
-
-    
-    if get==target:
-        print(half)
-        exit()
-    if get>target:
-        answer.append(half)
-        start=half
-        half=(max_len+start)//2
-        cut(start,half,target,max_len)
-    if get<target:
-        max_len=half
-        half=(max_len+start)//2
-        cut(start,half,target,max_len)
-
 
 k,n=map(int,input().split())
 lan=[]
@@ -43,10 +8,21 @@ for i in range(k):
 
 
 max_lan=max(lan)
-half=max_lan//2
-start=0
+start=1
+half=(max_lan+start)//2
 answer=[]
 
 
-cut(start,half,n,max_lan)   
+while start<=max_lan:
+    count=0
+    for i in lan:
+        count+=i//half
+    if count>=n:
+        answer.append(half)
+        start=half+1
+    else:
+        max_lan=half-1
+    half=(start+max_lan)//2
+
+print(max(answer))
 
