@@ -17,4 +17,3 @@ for arr_e in arr:
                     break
 
 print(len(dp))
-    
