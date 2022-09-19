@@ -13,17 +13,6 @@ int main(){
         return -1;
     }
 
-    int A[2048];
-    int k=0;
-    while((fscanf(fp, "%d", &A[k])) != EOF)
-    {         
-        k+=1;
-    }
-
-    for(int j=0; j<k; j++){
-        printf("%d\n",A[j]);
-    }
-    
         
         
     while (1){
@@ -31,15 +20,21 @@ int main(){
         double sum=0;
         double student[1001];
         double avg=0;
-        double ans1,ans2=0;
-        scanf("%d",&n);
+        double ans1=0;
+        double ans2=0;
+
+
+        fscanf(fp,"%d",&n);
         if(n==0){
             break;
         }
+
         for(int i=0;i<n;i++){
-            scanf("%lf",&student[i]);
+            fscanf(fp,"%lf",&student[i]);
             sum+=student[i];
         }
+
+
         avg=round(sum/n/10)*10;
         
 
