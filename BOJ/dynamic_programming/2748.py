@@ -1,5 +1,6 @@
 
-
+import sys
+sys.setrecursionlimit(10000)
 def fibo(n):
     
     if n<=2:
