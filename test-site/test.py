@@ -1,3 +1,11 @@
-import os; os.system('systemctl suspend')
-for i in range(3):
-    a=list(map(int,input().split()))
+n=int(input())
+
+dp=[0 for i in range(n+2)]
+dp[0]=0
+dp[1]=1
+for i in range(2,n+1):
+    dp[i]=dp[i-1]+dp[i-2]
+
+
+
+print(dp[n])
