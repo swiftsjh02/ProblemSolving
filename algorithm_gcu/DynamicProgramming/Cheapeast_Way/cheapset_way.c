@@ -2,9 +2,13 @@
 #include <stdlib.h>
 
 
-int dodp(int x,int y,int sum,int m,int n, int a[10][100],int dp[10][100]){
+int dodp(int x,int y,int sum,int m,int n, int a[][100],int dp[][100]){
     if(x==n){
         return 0;
+    }
+
+    if(y<0){
+        y=m-1;
     }
     
     sum+=a[y][x];
@@ -22,6 +26,8 @@ int dodp(int x,int y,int sum,int m,int n, int a[10][100],int dp[10][100]){
     dodp(x+1,y,sum,m,n,a,dp);
     dodp(x+1,(y+1)%m,sum,m,n,a,dp);
     dodp(x+1,y-1,sum,m,n,a,dp);
+
+    return 0;
  
 }
 
@@ -31,7 +37,8 @@ int main(){
     int m,n;
     while(fscanf(fp,"%d %d",&m,&n)!=EOF){
         int sum=0;
-        int x,y=0;
+        int x=0;
+        int y=0;
         int a[10][100]={0};
         int dp[10][100]={0};
         for(int i=0; i<m; i++){
