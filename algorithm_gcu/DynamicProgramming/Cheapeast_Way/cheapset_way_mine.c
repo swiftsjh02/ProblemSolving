@@ -39,6 +39,7 @@ int main(){
         int sum=0;
         int x=0;
         int y=0;
+        int min=99999;
         int a[10][100]={0};
         int dp[10][100]={0};
         for(int i=0; i<m; i++){
@@ -56,6 +57,12 @@ int main(){
             printf("\n");
         }
 
+        for(int i=0; i<m; i++){
+            if(min>dp[i][n-1]){
+                min=dp[i][n-1];
+            }
+        }
+        printf("lowest cost: %d\n",min);
     }
 
 
