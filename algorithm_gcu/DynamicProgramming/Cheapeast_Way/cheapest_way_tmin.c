@@ -59,9 +59,16 @@ int main(){
                 dp[i][j].record[dp[i][j].record_idx--]=path[i][j];
             }
         }
-
-
         node *ans=&dp[0][0];
+        int min_ans=dp[0][0].sum;
+        for(int i=1; i<m; i++){
+            if(dp[i][0].sum<min_ans){
+                min_ans=dp[i][0].sum;
+                ans=&dp[i][0];
+            }
+        }
+        
+
 
         for(int i=0; i<n; i++){
             printf("%d ",ans->record[i]);
