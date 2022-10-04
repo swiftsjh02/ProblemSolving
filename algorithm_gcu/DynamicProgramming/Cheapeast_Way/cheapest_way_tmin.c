@@ -71,7 +71,8 @@ int main(){
 
 
         for(int i=0; i<n; i++){
-            p
+            printf("%d ",ans->record[i]);
+        }
         printf("\n%d\n",ans->sum);
 
     }
