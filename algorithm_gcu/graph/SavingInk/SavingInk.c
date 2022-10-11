@@ -6,7 +6,7 @@ double distance(double x1, double y1, double x2, double y2)
     return sqrt(pow(x1-x2,2)+pow(y1-y2,2));
 }
 
-double prim(double matrix[][100],int n,int*node){
+double prim(double **matrix,int n,int*node){
     int start=0;
     int *visited=(int*)malloc(sizeof(int)*n);
     for(int i=0; i<n; i++){
@@ -29,13 +29,13 @@ double prim(double matrix[][100],int n,int*node){
                         }
                     }
                 }
-                    }
-                }
+            }
+        }
         visited[next]=1;
         distance+=min;
-            }
+    }
     return distance;
-        }
+}
 
 
 
@@ -48,8 +48,14 @@ int main(){
 
     int n;
     fscanf(fp,"%d",&n);
-    double input[100][2];
-    double matrix[100][100];
+    double **input=(double**)malloc(sizeof(double*)*n);
+    for(int i=0; i<n; i++){
+        input[i]=(double*)malloc(sizeof(double)*2);
+    }
+    double **matrix=(double**)malloc(sizeof(double*)*n);
+    for(int i=0; i<n; i++){
+        matrix[i]=(double*)malloc(sizeof(double)*n);
+    }
     int *node=(int *)malloc(n*sizeof(int));
     for(int i=0; i<n; i++){
         fscanf(fp,"%lf %lf",&input[i][0],&input[i][1]);
