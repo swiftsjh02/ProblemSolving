@@ -17,7 +17,7 @@ def dijkstra(graph,start):
         for i in range(0,len(distance)):
             if distance[i]==-1 and graph[v][i]==1:
                 distance[i]=min(distance[i],distance[i]+1)
-                queue.append(i)
+                
         
     return distance
 
