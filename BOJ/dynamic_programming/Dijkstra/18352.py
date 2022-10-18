@@ -3,31 +3,22 @@ from pprint import pprint
 
 def dijkstra(graph,start):
     #initialize distance
-    distance=[float('inf') for i in range(0,len(graph))]
+    distance=[-1 for i in range(0,len(graph))]
     distance[start]=0
-    #initialize visited
-    visited=[False for i in range(0,len(graph))]
     #initialize queue
-    queue=[i for i in range(0,len(graph))]
+    queue=[start]
 
     #print(distance)
     #print(visited)
     #print(queue)
 
-    while len(queue)!=1:
-        min=queue[0]
-        for i in queue[1:]:
-            if distance[i]<distance[min]:
-                min=i
-        queue.remove(min)
-
-        for i in range(len(graph)):
-            if graph[min][i]!=0 and visited[i]==False:
-                if distance[min]+graph[min][i]<distance[i]:
-                    distance[i]=distance[min]+graph[min][i]
-                    
-        #update visited
-        visited[min]=True
+    while len(queue)!=0:
+        v=queue.pop(0)
+        for i in range(0,len(distance)):
+            if distance[i]==-1 and graph[v][i]==1:
+                distance[i]=min(distance[i],distance[i]+1)
+                queue.append(i)
+        
     return distance
 
 
@@ -36,13 +27,13 @@ def dijkstra(graph,start):
 
 n,m,k,x=map(int,input().split())
 
-graph=[[0 for i in range(n+1)] for i in range(n+1)]
+graph=[[0 for i in range(n)] for i in range(n)]
 
 for i in range(m):
     a,b=map(int,input().split())
-    graph[a][b]=1
+    graph[a-1][b-1]=1
 
-#pprint(graph)    
+pprint(graph)    
 
 distance=dijkstra(graph,x)
 answer=[]
