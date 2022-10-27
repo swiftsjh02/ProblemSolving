@@ -40,7 +40,7 @@ double prim(double **matrix,int n,int*node){
 
 
 int main(){
-    FILE *fp=fopen("/home/ubuntu/ProblemSolving/algorithm_gcu/graph/SavingInk/input.txt","r");
+    FILE *fp=fopen("input.txt","r");
     if(fp==NULL){
         printf("File not found");
         return 0;
