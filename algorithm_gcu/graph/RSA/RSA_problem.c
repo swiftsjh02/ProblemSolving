@@ -1,56 +1,83 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
+#include<stdio.h>
 
-char * decrypt(char *str,int strlen,int n,int d){
-    char *decstr=(char*)malloc(sizeof(char)*strlen);
-    printf("printing dec:\n");
-    for(int i=0; i<strlen; i++){
-        int temp=str[i];
-        decstr[i]=(int)pow(temp,d)%n;
-        printf("%c",decstr[i]);
-    }
-    printf("\n");
+struct pq{ //struct for storage p and q
+  int p;
+  int q;
+};
 
-    return decstr;
+long decryption(long c,long d,long n){ //decrypt function use private key (d,n)
+  double l=1;
+  double result=1;
+	for(int loop=0;loop < d ; loop++){
+		result=(result*((double)c));
+		l=(long)(result/n);
+		result=result-(l*n);
+	}
+	return (long)result;
 }
 
-char * incrypt(char *str,int strlen,int n,int e){
-    printf("printing inc:\n");
-    char *encstr=(char*)malloc(sizeof(char)*strlen);
-    for(int i=0; i<strlen; i++){
-        int temp=str[i];
-        printf("%lf\n",pow(temp,e));
-        printf("%d",((int)pow(temp,e))%n);
-        encstr[i]=(int)pow(temp,e)%n;
-        printf("%c",encstr[i]);
+struct pq factorization(int n){ //find p and q and return
+  struct pq ans;
+    while(1){
+        if(n<2) return ans;
+        int p=2;
+        int pri[20];
+        int idx=0;
+        int i;
+ 
+        while(n!=1){
+            if(n%p==0){
+                n=n/p;
+                pri[idx]=p;
+                idx+=1;
+                p=2;
+            }
+            else{
+                p+=1;
+            }
+        }
+ 
+        if(idx==1) return ans;
+        else{
+            for(i=0; i<idx-1; i++){
+                ans.p=pri[i];
+            }  
+          ans.q=pri[i];
+        }
     }
-    printf("\n");
-    return encstr;
+  return ans;
 }
 
+int EEA(int a, int b) {
+	int s1=1,s2=0;
+	int remain, s,quo;
+	while (b!=0) {
+		quo=a/b;
+		remain=a%b;
+		a=b; 
+        b = remain;
+		s=s1 - quo * s2;
+		s1=s2;
+    s2=s;	
+	}
+	s=s1;
+	return s;
+}
 
 int main(){
-    int p=11;
-    int q=37;
-    int e,n;
-    int d=103;
-    char c[1000];
-    printf("Enter E:");
-    scanf("%d",&e);
-    e=7;
-    printf("Enter N:");
-    scanf("%d",&n);
-    printf("Enter the message:");
-    scanf("%s",c);
-    printf("\n");
-    int s_len=strlen(c);
-
-    char *inc=incrypt(c,s_len,n,e);
-    
-    char *dec=decrypt(inc,s_len,n,d);
-
-
-    return 0;
+  int c;
+  int e;
+  int p;
+  int q;
+  int n;
+  printf("enter e:");
+  scanf("%d",&e);
+  printf("enter n:");
+  scanf("%d",&n);
+  printf("enter c:");
+	scanf("%d",&c);
+  struct pq ans=factorization(n);
+  int d=EEA(e,(ans.p-1)*(ans.q-1));
+	printf("result:%ld\n",decryption(c,d,n));
+	return 0;
 }
