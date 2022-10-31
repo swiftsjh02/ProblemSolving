@@ -21,6 +21,8 @@ char * incrypt(char *str,int strlen,int n,int e){
     char *encstr=(char*)malloc(sizeof(char)*strlen);
     for(int i=0; i<strlen; i++){
         int temp=str[i];
+        printf("%lf\n",pow(temp,e));
+        printf("%d",((int)pow(temp,e))%n);
         encstr[i]=(int)pow(temp,e)%n;
         printf("%c",encstr[i]);
     }
@@ -38,10 +40,8 @@ int main(){
     printf("Enter E:");
     scanf("%d",&e);
     e=7;
-    printf("\n");
     printf("Enter N:");
     scanf("%d",&n);
-    printf("\n");
     printf("Enter the message:");
     scanf("%s",c);
     printf("\n");
