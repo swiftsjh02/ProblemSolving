@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+#
 struct pq{ //struct for storage p and q
   int p;
   int q;
