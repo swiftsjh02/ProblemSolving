@@ -51,7 +51,7 @@ int main(){
     
     
 
-    printf("%d\n",prim(matrix,e,node));
+    printf("%d\n",prim(input,e,node));
 
 
     return 0;
