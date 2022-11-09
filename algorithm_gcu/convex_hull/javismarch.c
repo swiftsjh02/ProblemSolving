@@ -4,8 +4,8 @@
 
 struct point
 {
-    int x;
-    int y;
+    float x;
+    float y;
 };
 
 float computeangle(struct point a,struct point b){
@@ -16,7 +16,7 @@ float computeangle(struct point a,struct point b){
     if((dx>=0)&&(dy==0)){
         angle=0;
     }else{
-        angle=abs(dy)/(abs(dx)+abs(dy));
+        angle=(float)abs(dy)/(abs(dx)+abs(dy));
         if((dx<0)&&(dy>=0)){
             angle=2-angle;
     }else if((dx<=0)&&(dy<0)){
@@ -30,12 +30,33 @@ float computeangle(struct point a,struct point b){
 }
 
 int main(){
-    printf("enter point a:");
-    struct point a;
-    scanf("%d %d",&a.x,&a.y);
-    printf("enter point b:");
-    struct point b;
-    scanf("%d %d",&b.x,&b.y);
-    printf("angle: %f\n",computeangle(a,b));
+    FILE *fp=fopen("input.txt","r");
+    if(fp==NULL){
+        printf("Error in opening file");
+        exit(0);
+    }
+    int numoftestcase;
+    fscanf(fp,"%d",&numoftestcase);
+    fscanf(fp,"%s",0);
+    printf("number of case: %d\n",numoftestcase);
+    while (numoftestcase>0)
+    {
+        int numofpoints;
+        fscanf(fp,"%d",&numofpoints);
+        printf("number of points: %d\n",numofpoints);
+        struct point *points=(struct point*)malloc(sizeof(struct point)*numofpoints);
+        
+        for(int i=0; i<numofpoints; i++){
+            fscanf(fp,"%f %f",&points[i].x,&points[i].y);
+        }
+
+        for(int i=0; i<numofpoints; i++){
+            printf("%f %f\n",points[i].x,points[i].y);
+        }
+
+        numoftestcase--;
+    }
+    
+
     return 0;
 }
