@@ -38,7 +38,7 @@ int main(){
     int numoftestcase;
     char t[10];
     fscanf(fp,"%d",&numoftestcase);
-    fscanf(fp,"%s",t);
+    fscanf(fp,"%s",NULL);
     printf("number of case: %d\n",numoftestcase);
     while (numoftestcase>0)
     {
