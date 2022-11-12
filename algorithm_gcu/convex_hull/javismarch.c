@@ -8,7 +8,14 @@ struct point
     float y;
 };
 
+int ccw(struct point A, struct point B, struct point C) {
+	return (B.x - A.x)*(C.y - A.y) - (C.x - A.x)*(B.y - A.y);
+}
+
 float computeangle(struct point a,struct point b){
+    if(a.x==b.x&&a.y==b.y){
+        return 370;
+    }
     int dx,dy;
     float angle;
     dx=b.x-a.x;
@@ -29,6 +36,31 @@ float computeangle(struct point a,struct point b){
     return angle*90.0;
 }
 
+
+float computedistance(struct point a,struct point b){
+    float distance;
+    distance=sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
+    return distance;
+}
+
+int crossProduct(struct point a, struct point b, struct point c) {    //finds the place of c from ab vector
+   int y1 = a.y - b.y;
+   int y2 = a.y - c.y;
+   int x1 = a.x - b.x;
+   int x2 = a.x - c.x;
+   return y2*x1 - y1*x2; //if result < 0, c in the left, > 0, c in the right, = 0, a,b,c are collinear
+}
+
+void javismarch(struct point *points,int n){
+    
+    int c_index=n-1; //current index
+    int q=c_index%n;
+    float silkused=2;
+    printf("ccw: %d\n",ccw(points[c_index],points[q],points[2]));
+    
+   
+}
+
 int main(){
     FILE *fp=fopen("input.txt","r");
     if(fp==NULL){
@@ -45,18 +77,24 @@ int main(){
         int numofpoints;
         fscanf(fp,"%d",&numofpoints);
         printf("number of points: %d\n",numofpoints);
-        struct point *points=(struct point*)malloc(sizeof(struct point)*numofpoints);
+        struct point *points=(struct point*)malloc(sizeof(struct point)*numofpoints+1);
         
         for(int i=0; i<numofpoints; i++){
             fscanf(fp,"%f %f",&points[i].x,&points[i].y);
         }
 
-        for(int i=0; i<numofpoints; i++){
-            printf("%f %f\n",points[i].x,points[i].y);
+        points[numofpoints+1].x=0;
+        points[numofpoints+1].y=0;
+
+        for(int i=0; i<numofpoints+1; i++){
+            printf("%d:%f %f\n",i,points[i].x,points[i].y);
         }
+
+        javismarch(points,numofpoints+1);
 
         numoftestcase--;
     }
+
     
 
     return 0;
