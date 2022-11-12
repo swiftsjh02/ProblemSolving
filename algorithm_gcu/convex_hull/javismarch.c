@@ -8,8 +8,12 @@ struct point
     float y;
 };
 
-int ccw(struct point A, struct point B, struct point C) {
-	return (B.x - A.x)*(C.y - A.y) - (C.x - A.x)*(B.y - A.y);
+int orientation(struct point p, struct point q, struct point r)
+{
+    int val = (q.y - p.y) * (r.x - q.x) -
+              (q.x - p.x) * (r.y - q.y);
+    if (val == 0) return 0; 	 // colinear
+    return (val > 0)? 1: 2; 	// clock or counterclock wise
 }
 
 float computeangle(struct point a,struct point b){
@@ -56,7 +60,7 @@ void javismarch(struct point *points,int n){
     int c_index=n-1; //current index
     int q=c_index%n;
     float silkused=2;
-    printf("ccw: %d\n",ccw(points[c_index],points[q],points[2]));
+    printf("ccw: %d\n",orientation(points[c_index],points[3],points[0]));
     
    
 }
