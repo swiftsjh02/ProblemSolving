@@ -48,7 +48,6 @@ double closestpairfrominitial(int *hull,struct point *points,int n,int count){
     for(int i=0; i<count; i++){
         if(min>computedistance(initial,points[hull[i]])){
             min=computedistance(initial,points[hull[i]]);
-            printf("%d\n",hull[i]);
         }
     }
     
