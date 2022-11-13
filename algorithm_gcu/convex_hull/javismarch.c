@@ -48,6 +48,7 @@ double closestpairfrominitial(int *hull,struct point *points,int n,int count){
     for(int i=0; i<count; i++){
         if(min>computedistance(initial,points[hull[i]])){
             min=computedistance(initial,points[hull[i]]);
+            printf("%d\n",hull[i]);
         }
     }
     
@@ -58,7 +59,7 @@ void javismarch(struct point *points,int n){
 
     double silk;
     
-    
+    n=n-1;
     int c_index=findminx(points,n); //current index
     int *hull=(int *)malloc(sizeof(int)*n); //array stores index of points that on hull
     int count=0; //count of points on hull
@@ -91,9 +92,9 @@ void javismarch(struct point *points,int n){
             }
         count++;
         }
-
+        n+=1;
         silk+=2*closestpairfrominitial(hull,points,n,count);
-        printf("%.2lf",silk);
+        printf("%.2lf\n",silk);
     
     
 
