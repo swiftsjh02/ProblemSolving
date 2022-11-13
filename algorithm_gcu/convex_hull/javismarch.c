@@ -8,17 +8,6 @@ struct point
     float y;
 };
 
-<<<<<<< HEAD
-
-=======
-int orientation(struct point p, struct point q, struct point r)
-{
-    int val = (q.y - p.y) * (r.x - q.x) -
-              (q.x - p.x) * (r.y - q.y);
-    if (val == 0) return 0; 	 // colinear
-    return (val > 0)? 1: 2; 	// clock or counterclock wise
-}
->>>>>>> 6fbe42931246614a9a84233d131af4cf1ef5edc2
 
 float computeangle(struct point a,struct point b){
     if(a.x==b.x&&a.y==b.y){
@@ -77,7 +66,7 @@ int findminx(struct point *points,int n){
 
 void javismarch(struct point *points,int n){
     
-<<<<<<< HEAD
+
     printf("%d\n",crossProduct(points[1],points[2],points[3]));
     int c_index=findminx(points,n);
     int *hull=(int *)malloc(sizeof(int)*n);
@@ -111,13 +100,12 @@ void javismarch(struct point *points,int n){
         }
     printf("%d\n",count);
 
-=======
+
     int c_index=n-1; //current index
     int q=c_index%n;
     float silkused=2;
     printf("ccw: %d\n",orientation(points[c_index],points[3],points[0]));
     
->>>>>>> 6fbe42931246614a9a84233d131af4cf1ef5edc2
    
 }
 
