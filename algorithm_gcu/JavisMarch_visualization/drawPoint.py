@@ -1,10 +1,9 @@
 import sys
 
 from PyQt5.QtCore import *
-
 from PyQt5.QtGui import *
-
 from PyQt5.QtWidgets import *
+import time
 
 #from PyQt5 import uic
 
@@ -17,6 +16,15 @@ from PyQt5.QtWidgets import *
 #class WindowClass(QMainWindow, form_class):
 
 class WindowClass(QMainWindow):
+
+    def ccw(a, p, q, r):
+        val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1])
+        if val == 0:
+            return 0
+        elif val > 0:
+            return 1
+        else:
+            return -1
 
     def __init__(self):
 
@@ -36,6 +44,8 @@ class WindowClass(QMainWindow):
 
         self.last_point = QPoint()
 
+        self.points=[]
+
         self.initUi()
 
 
@@ -54,11 +64,17 @@ class WindowClass(QMainWindow):
 
         clear_action = QAction('Clear', self)
 
+        Visualization = QAction('Visualization', self)
+
         clear_action.setShortcut('Ctrl+C')
 
         clear_action.triggered.connect(self.clear)
 
+        Visualization.triggered.connect(self.Visualization)
+
         menu.addAction(clear_action)
+
+        menu.addAction(Visualization)
 
 
 
@@ -133,8 +149,37 @@ class WindowClass(QMainWindow):
     def clear(self):
 
         self.image.fill(Qt.white)
+        self.points.clear()
+        self.update()
 
-        self.update()    
+    
+
+    def Visualization(self):
+        on_hull= min(self.points)
+        painter = QPainter(self.image)
+        painter.setPen(QPen(self.brush_color, self.brush_size, Qt.SolidLine, Qt.RoundCap))
+        
+
+        hull=[]
+        while True:
+            hull.append(on_hull)
+            endpoint = self.points[0]
+            for p in self.points:
+                o=self.ccw(on_hull, endpoint, p)
+                if endpoint == on_hull or o == 1:
+                    endpoint = p
+            on_hull = endpoint
+            if endpoint == hull[0]:
+                break
+
+        for i in range(len(hull)-1):
+            painter.drawLine(hull[i][0], hull[i][1], hull[i+1][0], hull[i+1][1])
+            self.update()
+            
+        painter.drawLine(hull[len(hull)-1][0], hull[len(hull)-1][1], hull[0][0], hull[0][1])
+        self.update()
+
+        
 
 
 
@@ -149,6 +194,7 @@ class WindowClass(QMainWindow):
             return
 
         print('X={}, Y={}'.format(pos.x(), pos.y()))
+        self.points.append([pos.x(), pos.y()])
 
 
 
@@ -159,6 +205,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = WindowClass()
+
 
     sys.exit(app.exec_())
 
