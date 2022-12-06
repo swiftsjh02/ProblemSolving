@@ -1,8 +1,8 @@
 #include<stdio.h>
-#
+
 struct pq{ //struct for storage p and q
-  int p;
-  int q;
+  long long p;
+  long long q;
 };
 
 long decryption(long c,long d,long n){ //decrypt function use private key (d,n)
@@ -20,10 +20,10 @@ struct pq factorization(int n){ //find p and q and return
   struct pq ans;
     while(1){
         if(n<2) return ans;
-        int p=2;
-        int pri[20];
-        int idx=0;
-        int i;
+        long long p=2;
+        long long pri[20];
+        long long idx=0;
+        long long i;
  
         while(n!=1){
             if(n%p==0){
@@ -48,9 +48,9 @@ struct pq factorization(int n){ //find p and q and return
   return ans;
 }
 
-int EEA(int a, int b) {
-	int s1=1,s2=0;
-	int remain, s,quo;
+long long EEA(long long a, long long b) {
+	long long s1=1,s2=0;
+	long long remain, s,quo;
 	while (b!=0) {
 		quo=a/b;
 		remain=a%b;
@@ -65,19 +65,19 @@ int EEA(int a, int b) {
 }
 
 int main(){
-  int c;
   int e;
   int p;
   int q;
   int n;
-  printf("enter e:");
-  scanf("%d",&e);
-  printf("enter n:");
-  scanf("%d",&n);
-  printf("enter c:");
-	scanf("%d",&c);
+  int loop;
+  scanf("%d",&loop);
+  for(int i=0; i<loop; i++){
+  
+  scanf("%d %d",&n,&e);
   struct pq ans=factorization(n);
   int d=EEA(e,(ans.p-1)*(ans.q-1));
-	printf("result:%ld\n",decryption(c,d,n));
+  printf("%d\n",d);
+  }
+ 
 	return 0;
 }
