@@ -3,15 +3,21 @@ import sys
 
 sys.setrecursionlimit(10000)
 
-def dfs(graph, v, visited):
+global cnt
+cnt=0
+def dfs(v):
     visited[v] = True
     for i in graph[v]:
-        if not visited[i]:
-            dfs(graph, i, visited)
+        if graph[v][i]==1 and visited[i]==False:
+            cnt+=1
+            dfs(i)
+    return
+    
+    
 
 n,m=map(int,input().split())
 graph=[]
-cnt=0
+
 for i in range(n):
     temp=[0 for i in range(n)]
     graph.append(temp)
@@ -25,8 +31,11 @@ pprint.pprint(graph)
 
 for i in range(n):
     if visited[i]==False:
-        dfs(graph,i,visited)
-        cnt+=1
+        dfs(i)
+    
+        
+print(cnt)
+        
 
 
 
