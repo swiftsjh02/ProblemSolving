@@ -1,27 +1,35 @@
 from pprint import pprint
 
 
+
 def dijkstra(graph,start):
     #initialize distance
-    distance=[-1 for i in range(0,len(graph))]
+    distance=[float('inf') for i in range(0,len(graph))]
     distance[start]=0
-    #initialize queue
-    queue=[start]
+    visited=[False for i in range(len(graph))]
+    visited[start]=True
 
-    #print(distance)
-    #print(visited)
-    #print(queue)
-
-    while len(queue)!=0:
-        v=queue.pop(0)
-        for i in range(0,len(distance)):
-            if distance[i]==-1 and graph[v][i]==1:
-                distance[i]=min(distance[i],distance[i]+1)
-                
-        
+    for i in graph[start]:
+        if i!=0:
+            distance[graph[start].index(i)]=i
+    
+    for i in range(len(graph)-1):
+        u=get_min_distance(distance,visited)
+        visited[u]=True
+        for v in range(len(graph)):
+            if graph[u][v]!=0 and visited[v]==False:
+                distance[v]=min(distance[v],distance[u]+graph[u][v])
+    
     return distance
 
-
+def get_min_distance(distance, visited):
+    min_distance=float('inf')
+    min_index=-1
+    for i in range(len(distance)):
+        if distance[i]<min_distance and visited[i]==False:
+            min_distance=distance[i]
+            min_index=i
+    return min_index     
 
 
 
@@ -35,7 +43,10 @@ for i in range(m):
 
 pprint(graph)    
 
-distance=dijkstra(graph,x)
+distance=dijkstra(graph,x-1)
+
+
+print(distance)
 answer=[]
 for i in range(len(distance)):
     if distance[i]==k:
