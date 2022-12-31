@@ -4,7 +4,8 @@ from collections import deque
 def tomato1(n,m):
 
     
-    q=deque((0,0))
+    q=deque()
+    q.append((0,0))
     
 
     while q:
@@ -30,25 +31,17 @@ def tomato1(n,m):
      
     print(tomato[m-1][n-1])    
 
-                
-        
-    
-       
-        
-
-    
-   
-
-
-
-
-
-
-n,m=map(int,input().split())
+            
+m,n=map(int,input().split())
 tomato=[]
 for i in range(m):
-    tmp=list(map(int,input().split()))
+    tmp=[]
+    row=input()
+    for i in row:
+        tmp.append(int(i))
     tomato.append(tmp)
+
+
 
 
 
