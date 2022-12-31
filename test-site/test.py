@@ -1,9 +1,10 @@
-import os
-import time
-import webbrowser
+n=input()
+a=[]
+for i in n:
+    if ord(i)<97:
+        a.append(i.lower())
+    else:
+        a.append(i.upper())
 
-while True:
-    webbrowser.open("https://www.pornhub.com")
-    cmd='say -v "Yuna" "너 사탄 들렸어?"'
-    os.system(cmd)
-    time.sleep(1)
+for i in a:
+    print(i,end="")

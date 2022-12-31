@@ -13,19 +13,23 @@ for i in range(n):
         if graph[i][j]==0:
             graph[i][j]=float('inf')
 
-pprint.pprint(graph)
+
 
 for i in range(n):
     for j in range(n):
         for k in range(n):
-            graph[i][j]=min(graph[i][j],graph[i][k]+graph[k][j])
+            graph[j][k]=min(graph[j][k],graph[j][i]+graph[i][k])
         
 
 
         
-
-
-pprint.pprint(graph)
+for i in range(len(graph)):
+    for j in range(len(graph)):
+        if graph[i][j]==float('inf'):
+            print("0",end=" ")
+        else:
+            print("1",end=" ")
+    print("")
 
 
 
