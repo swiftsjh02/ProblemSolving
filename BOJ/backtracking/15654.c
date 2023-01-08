@@ -6,9 +6,11 @@ int promising(int *arr,int depth){
     if(depth==0||depth==1){
         return flag;
     }
-    if (arr[depth]<arr[depth-1]){
-        flag=1;
-        return flag;
+    for(int i=1; i<depth; i++){
+        if(arr[depth]==arr[i]){
+            flag=1;
+            return flag;
+        }
     }
     return flag;
 }
@@ -23,22 +25,10 @@ int static compare (const void* first, const void* second)
         return 0;
 }
 
-int issame(int*a,int*b,int len){
-    int flag=0;
-    for(int i=1; i<len; i++){
-        if(a[i]!=b[i]){
-            flag=1;
-            return 1;
-        }
-    }
-    return 0;
-}
-
-void backtrack(int n,int m,int depth,int*arr,int*num,int*recent){
-    if(depth==m&&promising(arr,depth)==0&&issame(arr,recent,m+1)==1){
+void backtrack(int n,int m,int depth,int*arr,int*num){
+    if(depth==m&&promising(arr,depth)==0){
         for(int k=1; k<=m; k++){
             printf("%d ",arr[k]);
-            recent[k]=arr[k];
         }
         printf("\n");
         return;
@@ -47,7 +37,7 @@ void backtrack(int n,int m,int depth,int*arr,int*num,int*recent){
     if(promising(arr,depth)==0){
         for(int k=0; k<n; k++){
             arr[depth+1]=num[k];
-            backtrack(n,m,depth+1,arr,num,recent);
+            backtrack(n,m,depth+1,arr,num);
         }
     }
     
@@ -63,13 +53,8 @@ int main(){
     }
     qsort(num,n,sizeof(int),compare);
     int *arr=malloc(sizeof(int)*(m+1));
-    int *recent=malloc(sizeof(int)*(m+1));
-    for(int i=0; i<m+1; i++){
-        arr[i]=0;
-        recent[i]=-1;
-    }
 
-    backtrack(n,m,0,arr,num,recent);
+    backtrack(n,m,0,arr,num);
 
     return 0;
 }
