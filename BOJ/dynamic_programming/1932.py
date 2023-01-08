@@ -10,7 +10,7 @@ for i in range(n):
 for i in range(1,n):
     for k in range(i+1):
         if k==0:
-            triangle[i][k]+=triangle[i-1][0]
+            triangle[i][k]+=triangle[i-1][k]
         elif k==i:
             triangle[i][-1]+=triangle[i-1][-1]
         else:

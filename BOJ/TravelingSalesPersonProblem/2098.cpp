@@ -62,9 +62,7 @@ bool hamcycle(int **graph, int V){
 
 int main(){
     int V;
-    int n,m;
-    scanf("%d %d",&n,&m);
-    V=n-1;
+    scanf("%d",&V);
     //2D array size of V*V
     int **graph=(int **)malloc(V*sizeof(int *));
     for(int i=0;i<V;i++){
@@ -75,11 +73,17 @@ int main(){
             graph[i][j]=0;
         }
     }
-    for(int i=0; i<m; i++){
-        int u,v;
-        scanf("%d %d",&u,&v);
-        graph[u-1][v-1]=1;
+    for(int i=0; i<V; i++){
+        int *row=(int*)malloc(sizeof(int)*V);
+        for(int k=0; k<V; k++){
+            scanf("%d",&row[k]);
+        }
+        for(int j=0; j<V; j++){
+            graph[i][j]=row[j];
+        }
     }
+
+
 
     
     hamcycle(graph,V);
