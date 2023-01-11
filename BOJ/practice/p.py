@@ -1,19 +1,18 @@
-from pprint import pprint
-n=int(input())
-triangle=[]
+import sys
+from collections import deque
+import heapq
+n,l=map(int,input().split())
+num=list(map(int,sys.stdin.readline().split())) 
+selection=deque()
+
+
 for i in range(n):
-    tmp=list(map(int,input().split()))
-    triangle.append(tmp)
+    tmp=num[i]
+    
 
-
-
-for i in range(1,n):
-    for k in range(i+1):
-        if k==0:
-            triangle[i][k]+=triangle[i-1][0]
-        elif k==i:
-            triangle[i][-1]+=triangle[i-1][-1]
-        else:
-            triangle[i][k]+=max(triangle[i-1][k-1],triangle[i-1][k])
-
-print(max(triangle[n-1]))
+    while selection and selection[-1]>tmp:
+        selection.pop()
+    selection.append(tmp)
+    if i>=l and selection[0]==num[i-l]:
+        selection.popleft()
+    print(selection[0],end=' ')

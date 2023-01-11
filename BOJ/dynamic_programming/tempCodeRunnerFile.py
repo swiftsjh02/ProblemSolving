@@ -1,2 +1,2 @@
-
-    for j in range(0,i):
+print(max_a)
+print(max_b)
