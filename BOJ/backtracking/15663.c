@@ -2,6 +2,7 @@
 #include<stdlib.h>
 
 int value=-1;
+int check[10];
 
 int static compare (const void* first, const void* second)
 {
@@ -13,9 +14,11 @@ int static compare (const void* first, const void* second)
         return 0;
 }
 
-void backtrack(int n,int m,int depth,int*arr,int*num,int idx){
+
+
+void backtrack(int n,int m,int depth,int*arr,int*num){
     if(depth==m){
-        for(int k=1; k<=m; k++){
+        for(int k=0; k<m; k++){
             printf("%d ",arr[k]);
         }
         printf("\n");
@@ -24,18 +27,19 @@ void backtrack(int n,int m,int depth,int*arr,int*num,int idx){
     int value=-1;
  
 
-    for(int k=1; k<=n; k++){
-        if(k!=idx){
-            if(value!=num[k-1]){
-                value=num[k-1];
-                arr[depth+1]=num[k-1];
-                backtrack(n,m,depth+1,arr,num,k);
-            }  
+    for(int k=0; k<n; k++){
+        if(check[k]==0&&value!=num[k]){
+            
+                value=num[k];
+                arr[depth]=num[k];
+                check[k]=1;
+                backtrack(n,m,depth+1,arr,num);
+                check[k]=0;
+            
          }
             
             
     }
-    
     
 
 }
@@ -43,14 +47,14 @@ void backtrack(int n,int m,int depth,int*arr,int*num,int idx){
 int main(){
     int n,m=0;
     scanf("%d %d",&n,&m);
-    int *num=malloc(sizeof(int)*n);
+    int *num=(int *)malloc(sizeof(int)*n);
     for(int i=0; i<n; i++){
         scanf("%d",&num[i]);
     }
     qsort(num,n,sizeof(int),compare);
-    int *arr=malloc(sizeof(int)*(m+1));
+    int *arr=(int *)malloc(sizeof(int)*(m+1));
 
-    backtrack(n,m,0,arr,num,-1);
+    backtrack(n,m,0,arr,num);
 
     return 0;
 }

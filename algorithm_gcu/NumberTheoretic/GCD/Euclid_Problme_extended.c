@@ -25,6 +25,7 @@ struct ans extended_euclid(struct ans x){
     tmp=x2.x;
     x2.x=x2.y;
     x2.y=tmp-(x.a/x.b)*x2.y;
+    printf("a:%d b:%d x:%d y:%d d:%d\n",x2.a,x2.b,x2.x,x2.y,x2.d);
     return x2;
 }
 

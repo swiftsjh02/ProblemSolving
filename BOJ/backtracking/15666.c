@@ -1,17 +1,8 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-int promising(int *arr,int depth){
-    int flag=0;
-    if(depth==0||depth==1){
-        return flag;
-    }
-    if (arr[depth]<arr[depth-1]){
-        flag=1;
-        return flag;
-    }
-    return flag;
-}
+int value=-1;
+
 
 int static compare (const void* first, const void* second)
 {
@@ -23,19 +14,43 @@ int static compare (const void* first, const void* second)
         return 0;
 }
 
+int promising(int *arr,int depth){
+    int flag=0;
+    if(depth==0||depth==1){
+        return flag;
+    }
+    if (arr[depth-1]<arr[depth-2]){
+        flag=1;
+        return flag;
+    }
+    return flag;
+}
+
+
+
 void backtrack(int n,int m,int depth,int*arr,int*num){
     if(depth==m&&promising(arr,depth)==0){
-        for(int k=1; k<=m; k++){
+        for(int k=0; k<m; k++){
             printf("%d ",arr[k]);
         }
         printf("\n");
         return;
     }
-    
+    int value=-1;
+ 
     if(promising(arr,depth)==0){
         for(int k=0; k<n; k++){
-            arr[depth+1]=num[k];
-            backtrack(n,m,depth+1,arr,num);
+            if(value!=num[k]){
+                
+                    value=num[k];
+                    arr[depth]=num[k];
+                    
+                    backtrack(n,m,depth+1,arr,num);
+                    
+                
+            }
+                
+                
         }
     }
     
@@ -45,12 +60,12 @@ void backtrack(int n,int m,int depth,int*arr,int*num){
 int main(){
     int n,m=0;
     scanf("%d %d",&n,&m);
-    int *num=malloc(sizeof(int)*n);
+    int *num=(int *)malloc(sizeof(int)*n);
     for(int i=0; i<n; i++){
         scanf("%d",&num[i]);
     }
     qsort(num,n,sizeof(int),compare);
-    int *arr=malloc(sizeof(int)*(m+1));
+    int *arr=(int *)malloc(sizeof(int)*(m+1));
 
     backtrack(n,m,0,arr,num);
 
