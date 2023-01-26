@@ -1,10 +1,10 @@
-n=input()
-a=[]
-for i in n:
-    if ord(i)<97:
-        a.append(i.lower())
-    else:
-        a.append(i.upper())
+import math
 
-for i in a:
-    print(i,end="")
+
+T=int(input())
+for i in range(T):
+    a,b=map(int,input().split())
+    print(math.lcm(a,b))
+    
+
+
